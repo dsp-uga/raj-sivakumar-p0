@@ -33,7 +33,7 @@ words_stripped = words.filter(lambda a: a.strip(".,:;'!?"))
 ws_map = words_stripped.map(lambda word: (word, 1))
 ws_counts = ws_map.reduceByKey(lambda a,b: a+b)
 ws_count_map = ws_counts.filter(lambda a: a[1]>2)
-ws_counts_sorted = ws_count_map.filter(lambda a: a[0] not in stopwords).takeOrdered(40, key = lambda a: -a[1])
+ws_counts_sorted = ws_count_map.filter(lambda a: a[0] not in sw.value).takeOrdered(40, key = lambda a: -a[1])
 
 with open("sp3.json", 'w+') as file_c:
     json.dump(dict(ws_counts_sorted), file_c)
