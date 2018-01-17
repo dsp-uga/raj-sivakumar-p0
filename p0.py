@@ -33,7 +33,7 @@ words_stripped = words.filter(lambda a: a.strip(".,:;'!?"))
 ws_map = words_stripped.map(lambda word: (word, 1))
 ws_counts = ws_map.reduceByKey(lambda a,b: a+b)
 ws_count_map = ws_counts.filter(lambda a: a[1]>2)
-ws_counts_sorted = ws_count_map.filter(lambda a: a[0] not in sw.value).takeOrdered(40, key = lambda a: -a[1])
+ws_counts_sorted = ws_count_map.filter(lambda a: a[0] not in stopwords).takeOrdered(40, key = lambda a: -a[1])
 
 with open("sp3.json", 'w+') as file_c:
     json.dump(dict(ws_counts_sorted), file_c)
@@ -122,11 +122,4 @@ tfidf_8 = tfdf_8.map(lambda a: (a[0], a[1][0] * math.log(8 / a[1][1]))).takeOrde
 
 
 with open("sp4.json", "w+") as file_d:
-    json.dump(dict(tfidf_1), file_d)
-    json.dump(dict(tfidf_2), file_d)
-    json.dump(dict(tfidf_3), file_d)
-    json.dump(dict(tfidf_4), file_d)
-    json.dump(dict(tfidf_5), file_d)
-    json.dump(dict(tfidf_6), file_d)
-    json.dump(dict(tfidf_7), file_d)
-    json.dump(dict(tfidf_8), file_d)
+    json.dump(dict(tfidf_1 + tfidf_2 + tfidf_3 + tfidf_4 + tfidf_5 + tfidf_6 + tfidf_7 + tfidf_8), file_d)
