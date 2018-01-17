@@ -1,1 +1,3 @@
 # rajsiv12-p0
+
+This project calculates word count and term frequency -inverse document frequency (TF-IDF) across 8 document collected from open sources. The program '''p0.py''' successively builds on itself. First it only does simple word count using map-reduce. The results of this step are written to '''sp1.json''' Then stopwords are removed in an additional preprocessing step in the next part of the program with results saved to '''sp2.json'''. Part 3 adds on another preprocessing step to remove leading and trailing punctuation. Part 4 calculates TF-IDF from two RDD's that are combined using the join method. The resulting RDD is used to map to the final TF-IDF calculation. These are saved to '''sp3.json''' and '''sp4.json''' respectively.
